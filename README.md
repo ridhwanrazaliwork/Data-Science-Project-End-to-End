@@ -54,6 +54,38 @@ basic_project/
 4. **Model Trainer** — Trains ElasticNet regression model
 5. **Model Evaluation** — Computes metrics (RMSE, MAE, R²) and logs to MLflow
 
+### Pipeline Flow Diagram
+
+```mermaid
+graph TD
+    Start([Start Pipeline]) --> DI["Data Ingestion Stage"]
+    DI -->|Success| DV["Data Validation Stage"]
+    DI -->|Error| Error["⚠️ Error Handling<br/>Log & Raise Exception"]
+    
+    DV -->|Success| DT["Data Transformation Stage"]
+    DV -->|Error| Error
+    
+    DT -->|Success| MT["Model Trainer Stage"]
+    DT -->|Error| Error
+    
+    MT -->|Success| ME["Model Evaluation Stage"]
+    MT -->|Error| Error
+    
+    ME -->|Success| End["✅ Pipeline Complete"]
+    ME -->|Error| Error
+    
+    Error --> End
+    
+    style Start fill:#90EE90
+    style End fill:#90EE90
+    style Error fill:#FFB6C6
+    style DI fill:#87CEEB
+    style DV fill:#87CEEB
+    style DT fill:#87CEEB
+    style MT fill:#87CEEB
+    style ME fill:#87CEEB
+```
+
 ## 🚀 Quick Start
 
 ### Prerequisites
