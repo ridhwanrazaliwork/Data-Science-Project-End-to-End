@@ -143,3 +143,6 @@ Update pipeline behavior by editing:
 - pyyaml
 
 See `requirements.txt` for complete list.
+
+## Reference
+- MLOPS Udemy course from Krish Naik
